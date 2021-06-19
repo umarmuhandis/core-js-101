@@ -306,8 +306,26 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const numArr = ccn.toString().split('');
+  let oddSum = 0;
+  numArr.slice().forEach((num, index) => {
+    if (index % 2 === 1) {
+      oddSum += Number(num);
+    }
+  });
+
+  let evenSum = 0;
+  for (let i = 0; i < numArr.length; i += 2) {
+    const currentNumberDoubled = Number(numArr[i]) * 2;
+    if (currentNumberDoubled >= 10) {
+      evenSum += currentNumberDoubled - 9;
+    } else {
+      evenSum += currentNumberDoubled;
+    }
+  }
+
+  return (evenSum + oddSum) % 10 === 0;
 }
 
 /**
@@ -324,8 +342,17 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  // throw new Error('Not implemented');
+  let sum = num;
+
+  while (sum >= 10) {
+    sum = String(sum)
+      .split('')
+      .reduce((a, b) => +a + +b, 0);
+  }
+
+  return sum;
 }
 
 /**
@@ -350,7 +377,7 @@ function getDigitalRoot(/* num */) {
  *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+  // throw new Error('Not implemented');
 }
 
 /**
