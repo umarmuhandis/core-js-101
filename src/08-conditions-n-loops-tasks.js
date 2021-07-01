@@ -141,7 +141,7 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
+function doRectanglesOverlap( /* rect1, rect2 */ ) {
   // throw new Error('Not implemented');
 }
 
@@ -173,8 +173,13 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  */
 function isInsideCircle(circle, point) {
   // throw new Error('Not implemented');
-  const { radius } = circle;
-  const { x, y } = point;
+  const {
+    radius
+  } = circle;
+  const {
+    x,
+    y
+  } = point;
 
   return x ** 2 + y ** 2 <= radius ** 2;
 }
@@ -376,8 +381,32 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
+function isBracketsBalanced(str) {
   // throw new Error('Not implemented');
+  const openings = '[{<(',
+    closings = "]}>)"
+
+  if (str.length % 2 !== 0) {
+    return false;
+  }
+
+  const strArr = str.split('');
+  let i = 0;
+
+  while (strArr.length !== 0) {
+    const openingIndex = openings.indexOf(str[i]);
+
+    if (openingIndex === -1) return false;
+    if (!strArr.includes(closings[openingIndex])) return false;
+
+    strArr.splice(i, 1);
+    strArr.splice(strArr.indexOf(closings[openingIndex]), 1);
+    i++;
+  }
+
+  return true;
+
+  // return closings[openingIndex] === str[1];
 }
 
 /**
@@ -400,7 +429,7 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
+function toNaryString( /* num, n */ ) {
   throw new Error('Not implemented');
 }
 
@@ -416,7 +445,7 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
+function getCommonDirectoryPath( /* pathes */ ) {
   throw new Error('Not implemented');
 }
 
@@ -438,7 +467,7 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
+function getMatrixProduct( /* m1, m2 */ ) {
   throw new Error('Not implemented');
 }
 
@@ -472,7 +501,7 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
+function evaluateTicTacToePosition( /* position */ ) {
   throw new Error('Not implemented');
 }
 
