@@ -174,11 +174,11 @@ function doRectanglesOverlap( /* rect1, rect2 */ ) {
 function isInsideCircle(circle, point) {
   // throw new Error('Not implemented');
   const {
-    radius
+    radius,
   } = circle;
   const {
     x,
-    y
+    y,
   } = point;
 
   return x ** 2 + y ** 2 <= radius ** 2;
@@ -383,25 +383,28 @@ function getDigitalRoot(num) {
  */
 function isBracketsBalanced(str) {
   // throw new Error('Not implemented');
-  const openings = '[{<(',
-    closings = "]}>)"
+  const openings = '[{<(';
+  const closings = ']}>)';
 
   if (str.length % 2 !== 0) {
     return false;
   }
 
   const strArr = str.split('');
-  let i = 0;
 
   while (strArr.length !== 0) {
-    const openingIndex = openings.indexOf(str[i]);
+    const openingIndex = openings.indexOf(strArr[0]);
+    const closingElement = closings[openingIndex];
 
-    if (openingIndex === -1) return false;
-    if (!strArr.includes(closings[openingIndex])) return false;
+    // if (!strArr.includes(closingElement)) return false;
 
-    strArr.splice(i, 1);
-    strArr.splice(strArr.indexOf(closings[openingIndex]), 1);
-    i++;
+    const realClosingIndex = strArr.findIndex(
+      (_, index) => _ === closingElement && index % 2 !== 0,
+    );
+    if (realClosingIndex === -1) return false;
+
+    strArr.splice(0, 1);
+    strArr.splice(realClosingIndex - 1, 1);
   }
 
   return true;
